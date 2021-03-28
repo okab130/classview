@@ -1,0 +1,7 @@
+{% extends 'newapp/base.html' %}
+
+{% block content %}
+  <p>タイトル：{{ post.title }}</p>
+  <p>メモ：{{ post.comment }}</p>
+  <img src="http://45.77.24.44:8000{{ MEDIA_URL }}{{ post.attach }}"　width="300" height="200" />
+  {% endblock content %}

@@ -1,0 +1,10 @@
+{% extends 'newapp/base.html' %}
+
+{% block content %}
+  <p>-------------------</p>
+  {% for post in posts %}
+   タイトル：<a href="{% url 'store:detail' post.pk %}">{{ post.title }}:{{ post.comment }}[更新日時{{ post.updated_at }}]</a>
+    <p>-------------------</p>
+  {% endfor %}
+{% endblock content %}
+

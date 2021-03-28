@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.contrib import messages
-from .models import Company,Company2,Books
+from .models import Company,Company2,Books,Post
 from .forms import BookForm,TestForm
 
 
@@ -63,3 +63,14 @@ class TestView(FormView):
         form.save()  # 保存処理など
         messages.add_message(self.request, messages.SUCCESS, '登録しました！')  # メッセージ出力
         return super().form_valid(form)
+
+def listfunc(request):
+    posts = Post.objects.all()
+    return render(request, 'newapp/list2.html', {'posts': posts})
+
+def detailfunc(request, pk):
+    post = Post.objects.get(pk=pk)
+    return render(request, 'newapp/detail2.html', {'post': post})
+
+
+

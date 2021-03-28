@@ -16,25 +16,31 @@ class BookForm(forms.ModelForm):
         obj.save()
 
 
-class TestForm(forms.Form):
-    title = CharField(
-        initial='',
-        label='タイトル',
-        max_length=10,
-        required=True,  # 必須
-    )
-    comment = CharField(
-        initial='',
-        label='コメント',
-        max_length=100,
-        required=True,  # 必須
-    )
-    def save(self):
-        # save data using the self.cleaned_data dictionary
-        data = self.cleaned_data
-        post = Post(
-            title=data['title'], 
-            comment=data['comment']
-        )
-        post.save()
+#class TestForm(forms.Form):
+#    title = CharField(
+#        initial='',
+#        label='タイトル',
+#        max_length=10,
+#        required=True,  # 必須
+#    )
+#    comment = CharField(
+#        initial='',
+#        label='コメント',
+#        max_length=100,
+#        required=True,  # 必須
+#    )
+#    attach = forms.fields.FileField(
+#        label='ファイル',
+#        required=True,
+#        widget=forms.widgets.FileInput
+#    )
+#    def save(self):
+#        # save data using the self.cleaned_data dictionary
+#        data = self.cleaned_data
+#        post = Post(title=data['title'], comment=data['comment'])
+#        post.save()
 
+class TestForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'comment','attach')
